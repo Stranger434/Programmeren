@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+  <title>Speelhaldag</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Speelhaldag</h1>
+  <form id="form">
+    <p>
+      <label>Toegang: </label>
+      <input type="number" name="input" id="nr_toegang" min="0">
+    </p>
+    <p>
+        <label>Vipseats: </label>
+        <input type="number" name="input" id="nr_vipseats" min="0">
+      </p>
+    <p>
+        <label>Viptime: </label>
+        <input type="number" name="input" id="nr_viptime" min="0" step="5">
+      </p>
+    <input type="submit" id="submit_button" value="berekenen">
+  </form>
+  <div id="result">
+    <hr>
+    <h1>Kassabon</h1>
+    <hr>
+    <p><label>Toegang: </label><span id="receipt_toegang"></span></p>
+    <p><label>Vipseats: </label><span id="receipt_vipseats"></span></p>
+    <p><label>Viptime: </label><span id="receipt_viptime"></span></p>
+    <hr>
+    <p><label>Te betalen: </label><span id="receipt_total"></span></p>
+    <p><label></label><span id="receipt_total2"></span></p>
+  </div>
+
+  <script>
+    const PRIJS_TOEGANG = 12.45
+    const PERIODE_VIPSEAT = 5 // minuten
+    const PRIJS_VIPSEAT = 0.65
+
+    function calculateReceipt(event){
+        let amount_toegang = Number(nr_toegang.value || 0);
+        let total_toegang  = amount_toegang * PRIJS_TOEGANG;
+        let display_toegang = `${amount_toegang.toFixed(2)} x ${PRIJS_TOEGANG} = ${total_toegang.toFixed(2)}`
+        console.log(display_toegang)
+        receipt_toegang.textContent = display_toegang;
+
+        let amount_vipseats = Number(nr_vipseats.value || 0);
+        let amount_viptime = Number(nr_viptime.value || 0);
+        let display_vipseats = `${amount_vipseats.toFixed(2)}`
+        let display_viptime = `${amount_viptime.toFixed(2)}`
+        console.log(display_vipseats)
+        console.log(display_viptime)
+        receipt_vipseats.textContent = display_vipseats;
+        receipt_viptime.textContent = display_viptime;
+
+        let vip_total = amount_viptime / 5 * PRIJS_VIPSEAT;
+        let bon_total = total_toegang + vip_total;
+        let display_total = `Vip: ${amount_vipseats.toFixed(2)} x ${amount_viptime.toFixed(2)} = ${vip_total.toFixed(2)}` 
+        let display_total2 = `Total: ${total_toegang.toFixed(2)} + ${vip_total.toFixed(2)} = ${bon_total.toFixed(2)}`
+        console.log(display_total)
+        receipt_total.innerHTML = display_total;
+        receipt_total2.innerHTML = display_total2;
+
+    }
+
+
+    submit_button.addEventListener('click',calculateReceipt);
+
+    // prevent document from default trying to really submit
+    function form_submit(event){
+      event.preventDefault();
+    }
+    form.addEventListener('submit',form_submit)
+
+  </script>
+</body>
+</html>

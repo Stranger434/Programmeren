@@ -1,0 +1,31 @@
+body {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  width: 40%;
+  min-width: 350px;
+  margin: auto;
+  border: 1px solid black;
+  padding: 10px;
+}
+h1 {
+  font-size: 18px;
+}
+label {
+  display:inline-block;
+  width: 40%;
+  vertical-align: top;
+}
+#profile, #bon{
+  font-family:'Courier New', Courier, monospace;
+  margin: 5px;
+  border: 1px black solid;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: lightgrey;
+} 
+
+#bon span {
+  display: inline-block;
+  width: 60%;
+  text-align: right;
+  color: red;
+}
