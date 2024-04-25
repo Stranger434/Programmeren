@@ -1,4 +1,5 @@
 import time, math, random
+
 # Houd huidige kamer bij
 huidige_kamer = 1
 aantal_ruppees = 0
